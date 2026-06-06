@@ -10,7 +10,6 @@
 char picture[HEIGHT][WIDTH];
 
 void clearPicture() {
-    // COMPLETED: Fills the entire 2D array picture with the EMPTY character '_'
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
             picture[i][j] = EMPTY;
@@ -19,7 +18,6 @@ void clearPicture() {
 }
 
 void displayPicture() {
-    // COMPLETED: Prints the 2D picture array row by row with formatting spaces
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
             printf("%c", picture[i][j]);
@@ -29,14 +27,12 @@ void displayPicture() {
 }
 
 void setPixel(int x, int y) {
-    // COMPLETED: Safe boundary checks before writing to the matrix array
     if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
         picture[y][x] = PIXEL;
     }
 }
 
 void drawLine(int x1, int y1, int x2, int y2) {
-    // COMPLETED: Bresenham's Line Algorithm utilizing setPixel
     int dx = abs(x2 - x1), sx = x1 < x2 ? 1 : -1;
     int dy = -abs(y2 - y1), sy = y1 < y2 ? 1 : -1;
     int err = dx + dy, e2;
@@ -51,12 +47,11 @@ void drawLine(int x1, int y1, int x2, int y2) {
 }
 
 void drawRectangle(int x1, int y1, int x2, int y2) {
-    /*
-        TODO: (Left incomplete for next push)
-        Draw a rectangle using four lines.
-        Top-left corner is (x1, y1).
-        Bottom-right corner is (x2, y2).
-    */
+    // COMPLETED: Draw a rectangle using four distinct boundary lines
+    drawLine(x1, y1, x2, y1); // Top horizontal edge
+    drawLine(x1, y2, x2, y2); // Bottom horizontal edge
+    drawLine(x1, y1, x1, y2); // Left vertical edge
+    drawLine(x2, y1, x2, y2); // Right vertical edge
 }
 
 void drawCircle(int cx, int cy, int radius) {
@@ -68,7 +63,6 @@ void drawCircle(int cx, int cy, int radius) {
 }
 
 void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
-    // COMPLETED: Draws a triangle by joining the three lines end-to-end
     drawLine(x1, y1, x2, y2);
     drawLine(x2, y2, x3, y3);
     drawLine(x3, y3, x1, y1);
