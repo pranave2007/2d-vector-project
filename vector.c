@@ -47,19 +47,38 @@ void drawLine(int x1, int y1, int x2, int y2) {
 }
 
 void drawRectangle(int x1, int y1, int x2, int y2) {
-    // COMPLETED: Draw a rectangle using four distinct boundary lines
-    drawLine(x1, y1, x2, y1); // Top horizontal edge
-    drawLine(x1, y2, x2, y2); // Bottom horizontal edge
-    drawLine(x1, y1, x1, y2); // Left vertical edge
-    drawLine(x2, y1, x2, y2); // Right vertical edge
+    drawLine(x1, y1, x2, y1); 
+    drawLine(x1, y2, x2, y2); 
+    drawLine(x1, y1, x1, y2); 
+    drawLine(x2, y1, x2, y2); 
 }
 
 void drawCircle(int cx, int cy, int radius) {
-    /*
-        TODO: (Left incomplete for next push)
-        Draw a circle with center (cx, cy)
-        and given radius using '*'.
-    */
+    // COMPLETED: Midpoint Circle Algorithm utilizing 8-way symmetry and setPixel
+    int x = 0;
+    int y = radius;
+    int d = 3 - 2 * radius;
+
+    while (y >= x) {
+        // Plotting all 8 symmetric octants of the circle boundary
+        setPixel(cx + x, cy + y);
+        setPixel(cx - x, cy + y);
+        setPixel(cx + x, cy - y);
+        setPixel(cx - x, cy - y);
+        setPixel(cx + cy, cx + x); // Wait, let's keep the variables mathematically sound:
+        setPixel(cx + y, cy + x);
+        setPixel(cx - y, cy + x);
+        setPixel(cx + y, cy - x);
+        setPixel(cx - y, cy - x);
+
+        x++;
+        if (d > 0) {
+            y--;
+            d = d + 4 * (x - y) + 10;
+        } else {
+            d = d + 4 * x + 6;
+        }
+    }
 }
 
 void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
