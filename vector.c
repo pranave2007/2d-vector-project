@@ -54,18 +54,15 @@ void drawRectangle(int x1, int y1, int x2, int y2) {
 }
 
 void drawCircle(int cx, int cy, int radius) {
-    // COMPLETED: Midpoint Circle Algorithm utilizing 8-way symmetry and setPixel
     int x = 0;
     int y = radius;
     int d = 3 - 2 * radius;
 
     while (y >= x) {
-        // Plotting all 8 symmetric octants of the circle boundary
         setPixel(cx + x, cy + y);
         setPixel(cx - x, cy + y);
         setPixel(cx + x, cy - y);
         setPixel(cx - x, cy - y);
-        setPixel(cx + cy, cx + x); // Wait, let's keep the variables mathematically sound:
         setPixel(cx + y, cy + x);
         setPixel(cx - y, cy + x);
         setPixel(cx + y, cy - x);
